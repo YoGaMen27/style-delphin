@@ -1,0 +1,176 @@
+@import '@fontsource-variable/montserrat';
+@import '@fontsource-variable/inter';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ── Theme CSS Variables (overridden by ThemeInjector) ── */
+  :root {
+    --theme-primary: #0F172A;
+    --theme-secondary: #0D9488;
+    --theme-accent: #22D3EE;
+    --theme-background: #F8FAFC;
+    --theme-surface: #FFFFFF;
+    --theme-text: #334155;
+    --theme-text-muted: #94A3B8;
+    --theme-gradient: linear-gradient(135deg, #0F172A 0%, #0D9488 50%, #22D3EE 100%);
+    --theme-card-bg: #FFFFFF;
+    --theme-hero-bg: #0F172A;
+    --theme-footer-bg: #0F172A;
+    --theme-nav-bg: rgba(15, 23, 42, 0.85);
+    --theme-border: #E2E8F0;
+    --theme-button: #FF6B6B;
+    --theme-button-hover: #FF8585;
+    --theme-wave: #F8FAFC;
+
+    --theme-font-heading: 'Montserrat Variable', sans-serif;
+    --theme-font-body: 'Inter Variable', sans-serif;
+
+    --theme-radius-card: 24px;
+    --theme-radius-button: 14px;
+    --theme-radius-image: 16px;
+
+    --theme-shadow-card: 0 8px 32px rgba(15, 23, 42, 0.12);
+    --theme-shadow-button: 0 4px 16px rgba(255, 107, 107, 0.35);
+    --theme-shadow-nav: 0 2px 20px rgba(15, 23, 42, 0.08);
+
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--theme-font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--theme-background);
+    color: var(--theme-text);
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--theme-font-heading);
+  }
+}
+
+@layer components {
+  /* ── Style variants ── */
+  .theme-style-rounded * {
+    --style-factor: 1;
+  }
+
+  .theme-style-sharp * {
+    --style-factor: 0;
+  }
+
+  .theme-style-pill * {
+    --style-factor: 2;
+  }
+
+  /* ── Density variants ── */
+  .theme-density-compact .theme-wrapper {
+    --space-section: 64px;
+    --space-content: 16px;
+    --space-gap: 16px;
+  }
+
+  .theme-density-normal .theme-wrapper {
+    --space-section: 96px;
+    --space-content: 24px;
+    --space-gap: 24px;
+  }
+
+  .theme-density-spacious .theme-wrapper {
+    --space-section: 140px;
+    --space-content: 32px;
+    --space-gap: 32px;
+  }
+
+  /* ── Animation variants ── */
+  .theme-anim-smooth .theme-wrapper {
+    --transition-fast: 150ms ease;
+    --transition-base: 300ms ease;
+    --transition-slow: 500ms ease;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .theme-anim-bouncy .theme-wrapper {
+    --transition-fast: 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-base: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-slow: 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-out: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .theme-anim-minimal .theme-wrapper {
+    --transition-fast: 100ms linear;
+    --transition-base: 150ms linear;
+    --transition-slow: 200ms linear;
+    --ease-out: ease-out;
+  }
+
+  /* ── Theme-aware utility classes ── */
+  .theme-card {
+    background-color: var(--theme-card-bg);
+    border-radius: var(--theme-radius-card);
+    box-shadow: var(--theme-shadow-card);
+    transition: all 0.3s var(--ease-out);
+  }
+
+  .theme-button {
+    background-color: var(--theme-button);
+    color: white;
+    border-radius: var(--theme-radius-button);
+    box-shadow: var(--theme-shadow-button);
+    font-family: var(--theme-font-heading);
+    transition: all 0.3s var(--ease-out);
+  }
+
+  .theme-button:hover {
+    background-color: var(--theme-button-hover);
+    transform: scale(1.03);
+  }
+
+  .theme-button:active {
+    transform: scale(0.97);
+  }
+
+  .theme-gradient-bg {
+    background: var(--theme-gradient);
+  }
+
+  .theme-section {
+    padding-top: var(--space-section, 96px);
+    padding-bottom: var(--space-section, 96px);
+  }
+
+  .theme-container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-content, 24px);
+    padding-right: var(--space-content, 24px);
+  }
+}
